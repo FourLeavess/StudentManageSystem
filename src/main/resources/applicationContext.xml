@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.ysy.studentmanagesystem">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+         <property name="locations">
+             <value>classpath:datasource.properties</value>
+         </property>
+     </bean>
+      <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+         <property name="url" value="${jdbc.url}"></property>
+         <property name="username" value="${jdbc.username}"></property>
+         <property name="password" value="${jdbc.password}"></property>
+     </bean>
+     
+     
+     <!-- 配置Session工厂 -->
+     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+         <property name="dataSource" ref="dataSource"></property>
+         <!-- 加载mybatis.cfg.xml文件 -->
+        <property name="configLocation" value="classpath:mybatis.cfg.xml"></property>
+         <!-- 自动扫描需要定义类别名的包，将包内的JAVA类的类名作为类别名 -->
+    </bean>
+     
+     <!-- 自动扫描所有的Mapper接口与文件 -->
+     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+         <property name="basePackage" value="com.ysy.studentmanagesystem.mapper"></property>
+          <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+     </bean>   
+</beans>

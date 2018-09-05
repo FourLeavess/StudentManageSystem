@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ysy.studentmanagesystem.mapper.LoginerMapper">
+<select id="getLoginerByLoginId" resultType="com.ysy.studentmanagesystem.mapper.Loginer"
+		parameterType="string">
+		<!-- 这里和普通的sql 查询语句差不多，对于只有一个参数，后面的 #{id}表示占位符，里面不一定要写id,写啥都可以，但是不要空着，如果有多个参数则必须写pojo类里面的属性 -->
+		select * from loginer where loginId = #{loginId}
+	</select>
+	
+	<select id="getAllLoginers" resultType="com.ysy.studentmanagesystem.mapper.Loginer">
+		<!-- 这里和普通的sql 查询语句差不多，对于只有一个参数，后面的 #{id}表示占位符，里面不一定要写id,写啥都可以，但是不要空着，如果有多个参数则必须写pojo类里面的属性 -->
+		select * from loginer
+	</select>
+</mapper>

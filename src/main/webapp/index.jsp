@@ -13,9 +13,9 @@
         <img class="content-logo" src="index.png" alt="logo">
         <h1 class="content-title">登录</h1>
         <div class="content-form">
-            <form method="post" action="" onsubmit="return submitTest()">
+            <form method="post" action="/login" onsubmit="return submitTest()">
                 <div id="change_margin_1">
-                    <input class="user" type="text" name="user" placeholder="请输入用户名" onblur="oBlur_1()" onfocus="oFocus_1()">
+                    <input class="user" type="text" name="loginId" placeholder="请输入用户名" onblur="oBlur_1()" onfocus="oFocus_1()">
                 </div>
                 <!-- input的value为空时弹出提醒 -->
                 <p id="remind_1"></p>
